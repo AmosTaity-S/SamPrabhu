@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baptism Registration</title>
+    <!-- Latest Bootstrap CSS with Subresource Integrity (SRI) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" integrity="sha384-rHyoN1iRsVXV4nD25nPvxfwa5LE9iFQF5TOjzCOmmjZGIfqixpN2OJt/JbFuUJz6" crossorigin="anonymous">
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #141414;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            font-size: 16px;
+            overflow-x: hidden; /* Hide horizontal scrollbar */
+            transition: background-color 0.5s ease; /* Smooth transition for background color */
+        }
+
+        header {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            transition: background-color 0.5s ease; /* Smooth transition for background color */
+        }
+
+        main {
+            padding: 40px;
+            position: relative; /* Set main to relative position */
+        }
+
+        .google-form-iframe-container {
+            width: 100%;
+            max-width: 800px; /* Set maximum width for the form container */
+            margin: 0 auto; /* Center the form container */
+        }
+
+        .google-form-iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            opacity: 0; /* Initially set the opacity to 0 */
+        }
+
+        .loading-spinner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 600px;
+        }
+
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+            animation: rotate 4s linear infinite; /* Circular loading animation for 4 seconds */
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+            z-index: 1000;
+            animation: fadeInOut 3s ease;
+        }
+
+        .popup.success {
+            background-color: #28a745;
+        }
+
+        .popup.fail {
+            background-color: #dc3545;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 1;
+            }
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            transition: background-color 0.5s ease; /* Smooth transition for background color */
+        }
+
+        .back-arrow {
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="animate__animated animate__fadeInDown">
+        <div class="container">
+            <h1>Child Baptism Registration</h1>
+        </div>
+    </header>
+
+    <main class="text-center animate__animated animate__fadeIn">
+        <h2>Child Baptism Registration</h2>
+        <p class="lead"><b>Enter the Details Below</b></p>
+
+        <!-- Display an error message if the form is not supported -->
+        <div id="error-message" class="popup fail">
+            Sorry, this browser is not supported. <i class="fas fa-exclamation-circle"></i>
+        </div>
+
+        <!-- Loading spinner while the form is loading -->
+        <div class="loading-spinner" id="loading-spinner">
+            <div class="spinner-border text-light" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <!-- Form container with maximum width -->
+        <div class="google-form-iframe-container">
+            <!-- Embed the Google Form using an iframe -->
+            <iframe id="google-form" class="google-form-iframe animate__animated animate__fadeInUp" src="https://docs.google.com/forms/d/e/1FAIpQLSdbStsFxcomyJR81H2h-TmNhUVLYGTlEWPwjbYZdmw1slpvRQ/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0" loading="lazy">Loading...</iframe>
+        </div>
+
+        <!-- Display a success message when the form loads successfully -->
+        <div id="success-message" class="popup success">
+            Form loaded successfully! <i class="fas fa-check-circle"></i>
+        </div>
+
+        <!-- Back arrow to go to index.html -->
+        <div class="back-arrow" onclick="goBack()">← Back</div>
+    </main>
+
+    <footer class="animate__animated animate__fadeIn">
+        <div class="container">
+            <p>&copy; 2023 Rev.Sam Prabhu.D All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Latest Bootstrap JS with SRI -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-yQ1jG5D7Db4vNu98r5mX6ZLZ/c2RSqh0BO83wOQaTAd+MMkc50E6DdN7tM3xmHdo" crossorigin="anonymous"></script>
+    <!-- Animate.css JavaScript for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.js"></script>
+    <!-- Font Awesome JavaScript for icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
+    <script>
+        // Check if the iframe is supported by the browser
+        var googleForm = document.getElementById('google-form');
+        var loadingSpinner = document.getElementById('loading-spinner');
+        var errorMessage = document.getElementById('error-message');
+        var successMessage = document.getElementById('success-message');
+
+        function goBack() {
+            // Navigate back to index.html
+            window.location.href = 'index.html';
+        }
+
+        function showMessage(messageElement, type) {
+            messageElement.style.display = 'flex';
+            setTimeout(function () {
+                messageElement.style.opacity = '0';
+                setTimeout(function () {
+                    messageElement.style.display = 'none';
+                    messageElement.style.opacity = '1';
+                }, 500); // 0.5 seconds for the fade-out animation
+            }, 3000); // 3 seconds
+
+            // Add success or fail class for styling
+            if (type === 'success') {
+                messageElement.classList.add('success');
+            } else if (type === 'fail') {
+                messageElement.classList.add('fail');
+            }
+        }
+
+        if (googleForm) {
+            // Show loading spinner while the form is loading
+            googleForm.onloadstart = function () {
+                loadingSpinner.style.display = 'flex';
+            };
+
+            // Hide loading spinner and show success message if the form loads successfully
+            googleForm.onload = function () {
+                loadingSpinner.style.display = 'none';
+                showMessage(successMessage, 'success');
+            };
+        } else {
+            // Show error message if the form is not supported
+            loadingSpinner.style.display = 'none';
+            showMessage(errorMessage, 'fail');
+        }
+    </script>
+</body>
+</html>

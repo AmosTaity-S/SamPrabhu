@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Church Forms</title>
+    <!-- Bootstrap CSS and slim versions of jQuery and Popper.js -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+          font-family: 'Montserrat', sans-serif;
+          background: url('background.jpg') center/cover no-repeat;
+          margin: 10; /* Incomplete property, add a value like margin: 10px; */
+          padding: ; /* This line is unnecessary and should be removed */
+          color: #333;
+          height: 100vh;
+      }
+
+        header {
+            background-color: rgba(52, 58, 64, 0.8);
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        header h1 {
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .container-fluid {
+            padding: 40px;
+        }
+
+        .btn-child-baptism {
+            width: 100%;
+            margin-bottom: 10px;
+            background-color: #DC143C; /* Light red background */
+            color: white;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn-adult-baptism {
+            width: 100%;
+            margin-bottom: 10px;
+            background-color: darkred; /* Dark red background */
+            color: white;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn-child-baptism:hover {
+            background-color: #ff6b6b; /* Light red hover */
+        }
+
+        .btn-adult-baptism:hover {
+            background-color: #b30000; /* Dark red hover */
+        }
+
+        .btn-baptism {
+            width: 100%;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn-baptism:hover {
+            background-color: #6c757d;
+        }
+
+        footer {
+            background-color: rgba(52, 58, 64, 0.8);
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Added media queries for better responsiveness */
+        @media (max-width: 576px) {
+            header {
+                padding: 15px 0;
+            }
+
+            .container-fluid {
+                padding: 20px;
+            }
+        }
+
+        /* Added simple fade-in animation for buttons */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Church Forms </h1>
+        </div>
+    </header>
+
+   <div class="container-fluid text-center">
+            <big><h2>Registration Forms</h2></big>
+            <p style="font-size: 18px;"><b>This is the website for application of Baptism, Marriage, Burial</b></p>
+
+            <!-- Baptism options directly on the main page -->
+            <div class="row">
+                <div class="col-12 col-md-6 offset-md-3">
+                    <a href="child_baptism.html" class="btn btn-child-baptism fade-in">Child Baptism</a>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12 col-md-6 offset-md-3">
+                    <a href="maintenance.html" class="btn btn-adult-baptism fade-in">Adult Baptism</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-6 offset-md-3">
+                    <a href="marriage_selecter.html" class="btn btn-success btn-baptism fade-in">Marriage</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-6 offset-md-3">
+                    <a href="burial.html" class="btn btn-dark btn-baptism fade-in">Burial</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Rev.Sam Prabhu.D All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Added script for fade-in animation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elements = document.querySelectorAll('.fade-in');
+            elements.forEach(function(element) {
+                element.classList.add('visible');
+            });
+        });
+    </script>
+</body>
+</html>
